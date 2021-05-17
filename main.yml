@@ -1,11 +1,11 @@
 ---
-# tasks file for deploy_fetch_distro
+# tasks file for deploy_file
 
-- hosts: localhost
-  gather_facts: yes
-  become: false
-  tasks:
-  - name: Distribution
-    debug: msg="{{ ansible_distribution }}"
-  - name: Distribution version
-    debug: msg="{{ ansible_distribution_version}}"
+- name: ensure file exists
+  copy:
+    content: ""
+    dest: /etc/iaac
+    force: no
+    group: sys
+    owner: root
+    mode: 0500
