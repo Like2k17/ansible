@@ -1,2 +1,11 @@
 ---
-# vars file for deploy_file
+# tasks file for deploy_file
+
+- name: ensure file exists
+  copy:
+    content: ""
+    dest: /etc/iaac
+    force: no
+    group: sys
+    owner: root
+    mode: 0500
