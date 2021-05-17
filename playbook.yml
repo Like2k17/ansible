@@ -1,0 +1,27 @@
+
+---
+- name: Playbook ensure file exists
+  hosts: iaac
+  become_user: rootx
+  
+  tasks:
+    - name: ensure file exists
+      copy:
+   	content: ""
+    	dest: /etc/iaac
+    	force: no
+   	group: sys
+    	owner: root
+    	mode: 0500
+
+- name: Print in registered variables
+  hosts: localhost
+  tasks:
+    - shell: "{{ item }}"
+      with_items:
+        - uname -a
+        - hostname
+        - ls -1 /Applications | wc -l
+      register: output
+    - debug: var=output
+    - debug: msg="{{ output.results[0].stdout_lines }}"
